@@ -3,29 +3,28 @@ package main
 import (
 	"fmt"
 	"go-booking-app/helper"
-	"strings"
 )
 
 const conferenceTickets = 50
 
 var conferenceName = "Go conference"
 var remainingTickets uint = 50
-var bookings = []string{}
+var bookings = []map[string]string{}
 
 func main() {
 
-	greetUsers(conferenceName, conferenceTickets)
+	helper.GreetUsers(remainingTickets, conferenceName, conferenceTickets)
 
 	for { // Infinite loop
 
-		firstName, lastName, email, userTickets := getUserInput()
+		firstName, lastName, email, userTickets := helper.GetUserInput()
 		isValidName, isValidEmail, isValidTicketNumber := helper.ValidateUserInput(remainingTickets, firstName, lastName, email, userTickets)
 
 		if isValidName && isValidEmail && isValidTicketNumber { // If user tries to book more tickets than are available
 
-			bookTicket(userTickets, bookings, firstName, lastName, email, conferenceName)
+			helper.BookTicket(remainingTickets, userTickets, bookings, firstName, lastName, email, conferenceName)
 
-			firstNames := getFirstNames(bookings)
+			firstNames := helper.GetFirstNames(bookings)
 			fmt.Printf("The first names in the bookings are: %v\n", firstNames)
 
 			if remainingTickets == 0 {
@@ -47,6 +46,7 @@ func main() {
 
 }
 
+/*
 func greetUsers(confName string, confTickets int) {
 	fmt.Printf("Welcome to the %v booking application\n", confName)
 	fmt.Printf("There is a total of %v tickets, %v tickets are still available\n", confTickets,
