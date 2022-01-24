@@ -22,8 +22,7 @@ func main() {
 
 		if isValidName && isValidEmail && isValidTicketNumber { // If user tries to book more tickets than are available
 
-			helper.BookTicket(remainingTickets, userTickets, bookings, firstName, lastName, email, conferenceName)
-
+			bookings := helper.BookTicket(remainingTickets, userTickets, bookings, firstName, lastName, email, conferenceName)
 			firstNames := helper.GetFirstNames(bookings)
 			fmt.Printf("The first names in the bookings are: %v\n", firstNames)
 

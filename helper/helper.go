@@ -24,6 +24,7 @@ func GreetUsers(remainingTickets uint, confName string, confTickets int) {
 
 func GetFirstNames(bookings []map[string]string) []string {
 	firstNames := []string{}
+	fmt.Println(bookings)
 	// iterate over all elements using blank identifier (Ignore index)
 	for _, booking := range bookings {
 		// append the first name to the slice
